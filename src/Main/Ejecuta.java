@@ -10,5 +10,5 @@ package Main;
  * @author DAM1
  */
 public class Ejecuta {
-    
+
 }
