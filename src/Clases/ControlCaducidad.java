@@ -20,17 +20,12 @@ public class ControlCaducidad {
     void ElminarCaducados (ArrayList<Medicamento> medicamentos){
         
         for (Medicamento medicamento : medicamentos) {
-            
             for (Unidad u : medicamento.getLotes()) {
-                
                 if(u.getCaducidad().compareTo(FechaActual)<0){
-                    
-                    
-                    
+                    medicamento.getLotes().remove(u);
+                    System.out.println("Lote retirado: " + medicamento + " " + u);
                 }
-                
             }
-            
         }
         
     }

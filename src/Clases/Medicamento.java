@@ -7,6 +7,7 @@
 package Clases;
 
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 
 /**
  *
@@ -15,7 +16,6 @@ import java.util.ArrayList;
 public class Medicamento {
     
     private String nombre;
-    private int cantidad;
     private ArrayList<PActivo> PrincipiosActivos = new ArrayList<>();
     private double precio;
     private ArrayList<Unidad> lotes = new ArrayList<Unidad>();
@@ -24,18 +24,14 @@ public class Medicamento {
         return nombre;
     }
 
-    public int getCantidad() {
-        return cantidad;
-    }
-
     public ArrayList<PActivo> getPrincipiosActivos() {
         return PrincipiosActivos;
     }
 
-    public Medicamento(String nombre, int cantidad, double precio) {
+    public Medicamento(String nombre, int cantidad, double precio, GregorianCalendar caducidad) {
         this.nombre = nombre;
-        this.cantidad = cantidad;
         this.precio = precio;
+        Unidad u = new Unidad(caducidad, 5);
     }
     
     void añadirPActivo (PActivo p){

@@ -22,6 +22,10 @@ public class Unidad {
         this.cantidad = cantidad;
     }
 
+    Unidad() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public GregorianCalendar getCaducidad() {
         return caducidad;
     }
@@ -37,8 +41,12 @@ public class Unidad {
         @Override
     public String toString(){
         
-        return "Caduca en: " + caducidad.get(GregorianCalendar.DAY_OF_MONTH) + "/" + (caducidad.get(GregorianCalendar.MONTH) + 1) + "/" + caducidad.get(GregorianCalendar.YEAR);
+        return cantidad + " unidades. Caducan en: " + caducidad.get(GregorianCalendar.DAY_OF_MONTH) + "/" + (caducidad.get(GregorianCalendar.MONTH) + 1) + "/" + caducidad.get(GregorianCalendar.YEAR);
         
+    }
+    
+    public int compareTo(Unidad u){
+        return u.getCaducidad().compareTo(caducidad);
     }
     
 }
