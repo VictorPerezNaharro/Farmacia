@@ -6,10 +6,29 @@
 
 package Clases;
 
+import java.util.ArrayList;
+import java.util.GregorianCalendar;
+
 /**
  *
  * @author grester
  */
 public class ControlCaducidad {
+    
+    private GregorianCalendar FechaActual = new GregorianCalendar();
+    
+    void ElminarCaducados (ArrayList<Medicamento> medicamentos){
+        
+        for (Medicamento medicamento : medicamentos) {
+            
+            if(medicamento.getCaducidad().compareTo(FechaActual)<0){
+                
+                
+                
+            }
+            
+        }
+        
+    }
     
 }
