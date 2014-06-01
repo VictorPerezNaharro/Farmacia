@@ -21,9 +21,13 @@ public class ControlCaducidad {
         
         for (Medicamento medicamento : medicamentos) {
             
-            if(medicamento.getCaducidad().compareTo(FechaActual)<0){
+            for (Unidad u : medicamento.getLotes()) {
                 
-                
+                if(u.getCaducidad().compareTo(FechaActual)<0){
+                    
+                    
+                    
+                }
                 
             }
             

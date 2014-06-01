@@ -34,4 +34,11 @@ public class Unidad {
         this.cantidad = cantidad;
     }
 
+        @Override
+    public String toString(){
+        
+        return "Caduca en: " + caducidad.get(GregorianCalendar.DAY_OF_MONTH) + "/" + (caducidad.get(GregorianCalendar.MONTH) + 1) + "/" + caducidad.get(GregorianCalendar.YEAR);
+        
+    }
+    
 }

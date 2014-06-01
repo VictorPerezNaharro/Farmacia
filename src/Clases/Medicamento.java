@@ -18,6 +18,7 @@ public class Medicamento {
     private int cantidad;
     private ArrayList<PActivo> PrincipiosActivos = new ArrayList<>();
     private double precio;
+    private ArrayList<Unidad> lotes = new ArrayList<Unidad>();
 
     public String getNombre() {
         return nombre;
@@ -46,4 +47,15 @@ public class Medicamento {
         PrincipiosActivos.add(p);
     }
 
+    public ArrayList<Unidad> getLotes() {
+        return lotes;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+    
+    public String toString(){
+        return nombre;
+    }
 }
