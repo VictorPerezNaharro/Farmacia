@@ -21,14 +21,14 @@ public class ControlCaducidad {
         
         for (Medicamento medicamento : medicamentos) {
             System.out.println("Medicamento: " + medicamento);
-            System.out.println("Numero de lotes: "+medicamento.getLotes().size());
+            int eliminados = 0;
             for (int i=0;i<medicamento.getLotes().size();i++) {
-                System.out.println("Actualmente revisando lote numero: "+i);
-                System.out.println(medicamento.getLotes().get(i).getCaducidad().compareTo(FechaActual));
+                System.out.println("Actualmente revisando lote numero: "+(i+eliminados+1));
                 if(medicamento.getLotes().get(i).getCaducidad().compareTo(FechaActual)<0){
-                    System.out.println("Lote retirado: " + medicamento + " " + medicamento.getLotes().get(i));
+                    System.out.println("Lote numero " + (i+eliminados+1) + " retirado: " + medicamento + " " + medicamento.getLotes().get(i));
                     medicamento.getLotes().remove(medicamento.getLotes().get(i));
                     i--;
+                    eliminados++;
                 }
             }
         }

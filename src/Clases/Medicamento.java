@@ -58,6 +58,6 @@ public class Medicamento {
     }
     
     public String toString(){
-        return nombre + ". Precio: " + precio;
+        return nombre;
     }
 }
