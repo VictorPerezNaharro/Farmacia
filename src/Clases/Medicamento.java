@@ -6,10 +6,21 @@
 
 package Clases;
 
+import java.util.ArrayList;
+import java.util.GregorianCalendar;
+
 /**
  *
  * @author grester
  */
 public class Medicamento {
+    
+    private String nombre;
+    private GregorianCalendar caducidad = new GregorianCalendar();
+    private int cantidad;
+    private ArrayList<PActivo> PrincipiosActivos = new ArrayList<>();
+    
+    
+    
     
 }
