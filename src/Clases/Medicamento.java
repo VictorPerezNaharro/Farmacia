@@ -28,10 +28,16 @@ public class Medicamento {
         return PrincipiosActivos;
     }
 
-    public Medicamento(String nombre, int cantidad, double precio, GregorianCalendar caducidad) {
+    public Medicamento(String nombre, double precio) {
         this.nombre = nombre;
         this.precio = precio;
-        Unidad u = new Unidad(caducidad, 5);
+    }
+    
+    public void AgregarLote(GregorianCalendar caducidad, int cantidad){
+        
+        Unidad u = new Unidad(caducidad, cantidad);
+        lotes.add(u);
+        
     }
     
     void añadirPActivo (PActivo p){
@@ -52,6 +58,6 @@ public class Medicamento {
     }
     
     public String toString(){
-        return nombre;
+        return nombre + ". Precio: " + precio;
     }
 }

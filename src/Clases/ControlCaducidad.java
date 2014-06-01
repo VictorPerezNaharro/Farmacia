@@ -17,13 +17,18 @@ public class ControlCaducidad {
     
     private GregorianCalendar FechaActual = new GregorianCalendar();
     
-    void ElminarCaducados (ArrayList<Medicamento> medicamentos){
+    public void ElminarCaducados (ArrayList<Medicamento> medicamentos){
         
         for (Medicamento medicamento : medicamentos) {
-            for (Unidad u : medicamento.getLotes()) {
-                if(u.getCaducidad().compareTo(FechaActual)<0){
-                    medicamento.getLotes().remove(u);
-                    System.out.println("Lote retirado: " + medicamento + " " + u);
+            System.out.println("Medicamento: " + medicamento);
+            System.out.println("Numero de lotes: "+medicamento.getLotes().size());
+            for (int i=0;i<medicamento.getLotes().size();i++) {
+                System.out.println("Actualmente revisando lote numero: "+i);
+                System.out.println(medicamento.getLotes().get(i).getCaducidad().compareTo(FechaActual));
+                if(medicamento.getLotes().get(i).getCaducidad().compareTo(FechaActual)<0){
+                    System.out.println("Lote retirado: " + medicamento + " " + medicamento.getLotes().get(i));
+                    medicamento.getLotes().remove(medicamento.getLotes().get(i));
+                    i--;
                 }
             }
         }
