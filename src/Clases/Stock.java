@@ -19,13 +19,26 @@ public class Stock {
     
     public ArrayList<PActivo> buscarPActivo(String busqueda){
         
+        ArrayList<PActivo> GbusquedaPa=new ArrayList<>();
+        for (int i = 0; i < principiosActivos.size(); i++) {
+            if(principiosActivos.get(i).parece(busqueda)){
+                GbusquedaPa.add(principiosActivos.get(i));
+            }
+        }
+        return GbusquedaPa;
         
         
     }
     
-    public ArrayList<Medicamento> buscarMedicamento(String Busqueda){
+    public ArrayList<Medicamento> buscarMedicamento(String busqueda){
         
-        
+        ArrayList<Medicamento> GbusquedaMe=new ArrayList<>();
+        for (int i = 0; i < medicamentos.size(); i++) {
+            if(medicamentos.get(i).parece(busqueda)){
+                GbusquedaMe.add(medicamentos.get(i));
+            }
+        }
+        return GbusquedaMe;
         
     }
     
