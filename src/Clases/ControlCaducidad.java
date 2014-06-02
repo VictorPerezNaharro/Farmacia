@@ -15,7 +15,7 @@ import java.util.GregorianCalendar;
  */
 public class ControlCaducidad {
     
-    private GregorianCalendar FechaActual = new GregorianCalendar();
+    private GregorianCalendar fechaActual = new GregorianCalendar();
     
     public void ElminarCaducados (ArrayList<Medicamento> medicamentos){
         
@@ -24,7 +24,7 @@ public class ControlCaducidad {
             int eliminados = 0;
             for (int i=0;i<medicamento.getLotes().size();i++) {
                 System.out.println("Actualmente revisando lote numero: "+(i+eliminados+1));
-                if(medicamento.getLotes().get(i).getCaducidad().compareTo(FechaActual)<0){
+                if(medicamento.getLotes().get(i).getCaducidad().compareTo(fechaActual)<0){
                     System.out.println("Lote numero " + (i+eliminados+1) + " retirado: " + medicamento + " " + medicamento.getLotes().get(i));
                     medicamento.getLotes().remove(medicamento.getLotes().get(i));
                     i--;
@@ -38,6 +38,8 @@ public class ControlCaducidad {
     public boolean Comprobarcaducidad(Unidad unidad){
         
         return true;
+        // HAZ QUE COMPRUEBE LA FECHA DE CADUCIDAD QUE ESTA INDICADA EN LA UNIDAD QUE RECIBE COMO PARAMETRO CON LA
+        // QUE TIENE AKI COMO "FechaActual", SI ESTA CADUCADO DEVUELVE FALSE, SI ESTA BIEN DEVUELVE TRUE.
         
     }
     
