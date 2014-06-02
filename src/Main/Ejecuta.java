@@ -4,6 +4,7 @@ import Clases.ControlCaducidad;
 import Clases.Medicamento;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.Scanner;
 
 /*
  * To change this template, choose Tools | Templates
@@ -18,24 +19,33 @@ public class Ejecuta {
 
     public static void main(String[] args) {
         ArrayList<Medicamento> medicamentos = new ArrayList<>();
-        
         GregorianCalendar g = new GregorianCalendar();
-        
-        Medicamento m = new Medicamento("aspirina", 5.5); //CREACION MEDICAMENTO
-        g.set(2015, 6, 1); //SE PONE FECHA DE CADUCIDAD ALTA AL NUEVO LOTE
-        m.AgregarLote(g, 5); //SE LE AGREGA UN LOTE DE 5 UNIDADES CON ESA FECHA DE CADUCIDAD
-        
-        GregorianCalendar g2 = new GregorianCalendar();
-        g2.set(2013, 6, 1); //IGUAL PERO CADUCADO
-        m.AgregarLote(g2, 5); //SE AÑADE AL MISMO MEDICAMENTO DE ANTES COMO OTRO LOTE
-        
-        medicamentos.add(m); //SE AÑADE ESE MEDICAMENTE CON LOS 2 LOTES AL ARRAY
-        
-        ControlCaducidad c = new ControlCaducidad(); // SE CREA EL CONTROLADOR DE CADUCIDAD
-        System.out.println("PRIMERA PASADA CONTROLADOR CADUCIDAD");
-        c.ElminarCaducados(medicamentos); // SE PASA EL CONTROL
-        System.out.println("SEGUNDA PASADA CONTROLADOR CADUCIDAD");
-        c.ElminarCaducados(medicamentos); // SE VUELVE A PASAR PARA COMPROBAR QUE SOLO QUEDA EL LOTE BUENO
+        Scanner s = new Scanner(System.in);
+        int opcion;
+        do{
+            System.out.println("1. Da de alta un medicamento");
+            System.out.println("2. Busqueda de medicamentos");
+            System.out.println("3. Venta de medicamento");
+            System.out.println("4. Borrado de medicamentos");
+            System.out.println("5. Salir");
+            opcion=s.nextInt();
+            s.nextLine();
+            switch(opcion){
+                case 1:{
+                    
+                }
+                case 2:{
+                    
+                }
+                case 3:{
+                    
+                }
+                case 4:{
+                    
+                }
+            }
+            
+        }while(opcion!=5);
     }
     
 }
