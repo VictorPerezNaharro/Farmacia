@@ -6,7 +6,6 @@
 
 package Clases;
 
-import com.sun.xml.internal.stream.Entity;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
@@ -36,8 +35,10 @@ public class Stock {
     public ArrayList<Medicamento> buscarMedicamento(String busqueda){
         
         ArrayList<Medicamento> GbusquedaMe=new ArrayList<>();
+        System.out.println("TAMAÑO ARRAY " + medicamentos.size());
         for (int i = 0; i < medicamentos.size(); i++) {
             if(medicamentos.get(i).parece(busqueda)){
+                System.out.println("Se parece");
                 GbusquedaMe.add(medicamentos.get(i));
             }
         }
@@ -84,9 +85,16 @@ public class Stock {
                 int num = scan.nextInt();
                 System.out.println("Escribe la fecha de caducidad. Formato dd/mm/aaaa");
                 String[] fecha = scan.nextLine().split("/");
+                System.out.println("El precio actual es de: " + nuevoMedicamento.getPrecio());
+                System.out.println("Si desea cambiar el precio escriba el nuevo, si no escriba un 0");
+                double precio = scan.nextDouble();
                 GregorianCalendar nuevo = new GregorianCalendar();
                 nuevo.set(Integer.parseInt(fecha[2]), Integer.parseInt(fecha[1]), Integer.parseInt(fecha[0]));
                 medicamentos.get(medicamentos.indexOf(nuevoMedicamento)).AgregarLote(nuevo, num);
+                if(precio>0){
+                    medicamentos.get(medicamentos.indexOf(nuevoMedicamento)).setPrecio(precio);
+                    System.out.println("Nuevo precio: " + precio);
+                }
                 System.out.println("Se han añadido " + num + " lotes de " + nuevoMedicamento);
                 return;
             }
@@ -95,8 +103,13 @@ public class Stock {
             System.out.println("No se han encontrado posibles parecidos en el stock de medicamentos");
         }
         
+        //NUEVO MEDICAMENTO
         
-        
+        System.out.println("Precio de " + nombre + ":");
+        double precio = scan.nextDouble();
+        nuevoMedicamento = new Medicamento(nombre, precio);
+        System.out.println("Medicamento creado. No tienes lotes agregados.");
+        return;
     }
     
 }

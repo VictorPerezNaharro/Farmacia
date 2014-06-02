@@ -39,12 +39,14 @@ public class Ejecuta {
             s.nextLine();
             switch(opcion){
                 case 1:{
-                    
+                    stock.altaMedicamento();
+                    break;
                 }
                 case 2:{
                     System.out.println("1. Buscar por medicamento");
                     System.out.println("2. Buscar por principio activo");
                     int opBus=s.nextInt();
+                    s.nextLine();
                     if(opBus==1){
                         System.out.println("Nombre de medicamneto");
                         String busMedicamneto=s.nextLine();
@@ -61,7 +63,7 @@ public class Ejecuta {
                             System.out.println(pActivo); 
                         }
                     }
-                    
+                    break;
                 }
                 case 3:{
                     

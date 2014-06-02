@@ -72,5 +72,8 @@ public class Medicamento {
         if(m.nombre.equals(nombre))return 1;
         return 0;
     }
-    
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
 }
