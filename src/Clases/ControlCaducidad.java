@@ -36,11 +36,10 @@ public class ControlCaducidad {
     }
     
     public boolean Comprobarcaducidad(Unidad unidad){
-        
-        return true;
-        // HAZ QUE COMPRUEBE LA FECHA DE CADUCIDAD QUE ESTA INDICADA EN LA UNIDAD QUE RECIBE COMO PARAMETRO CON LA
-        // QUE TIENE AKI COMO "FechaActual", SI ESTA CADUCADO DEVUELVE FALSE, SI ESTA BIEN DEVUELVE TRUE.
-        
+         if(unidad.getCaducidad().compareTo(fechaActual)<0){
+             return false;
+         }
+            return true;
     }
     
 }
