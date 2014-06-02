@@ -17,6 +17,16 @@ public class Stock {
     ArrayList<Medicamento> medicamentos = new ArrayList<>();
     ArrayList<PActivo> principiosActivos = new ArrayList<>();
     
-    public void 
+    public ArrayList<PActivo> buscarPActivo(String busqueda){
+        
+        
+        
+    }
+    
+    public ArrayList<Medicamento> buscarMedicamento(String Busqueda){
+        
+        
+        
+    }
     
 }
