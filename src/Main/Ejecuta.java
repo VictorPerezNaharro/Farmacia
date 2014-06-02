@@ -30,8 +30,8 @@ public class Ejecuta {
         Scanner s = new Scanner(System.in);
         int opcion;
         do{
-            System.out.println("1. Da de alta un medicamento");
-            System.out.println("2. Busqueda de medicamentos");
+            System.out.println("1. Dar de alta un medicamento");
+            System.out.println("2. Busqueda de medicamentos y principios activos");
             System.out.println("3. Venta de medicamento");
             System.out.println("4. Borrado de medicamentos");
             System.out.println("5. Salir");
