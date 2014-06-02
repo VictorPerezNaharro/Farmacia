@@ -33,4 +33,11 @@ public class PActivo {
     public ArrayList<Medicamento> getComponentePara() {
         return ComponentePara;
     }
+    
+    public boolean parece(String busqueda){
+        
+        if(this.nombre.contains(busqueda)||busqueda.contains(nombre)) return true;
+        return false;
+        
+    }
 }

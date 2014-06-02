@@ -60,4 +60,12 @@ public class Medicamento {
     public String toString(){
         return nombre;
     }
+    
+    public boolean parece(String busqueda){
+        
+        if(this.nombre.contains(busqueda)||busqueda.contains(nombre)) return true;
+        return false;
+        
+    }
+    
 }

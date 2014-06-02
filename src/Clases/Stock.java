@@ -6,10 +6,17 @@
 
 package Clases;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author grester
  */
 public class Stock {
+    
+    ArrayList<Medicamento> medicamentos = new ArrayList<>();
+    ArrayList<PActivo> principiosActivos = new ArrayList<>();
+    
+    public void 
     
 }
