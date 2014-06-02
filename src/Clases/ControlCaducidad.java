@@ -35,4 +35,10 @@ public class ControlCaducidad {
         
     }
     
+    public boolean Comprobarcaducidad(Unidad unidad){
+        
+        return true;
+        
+    }
+    
 }
