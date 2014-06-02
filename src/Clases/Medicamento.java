@@ -68,4 +68,9 @@ public class Medicamento {
         
     }
     
+    public int equals(Medicamento m){
+        if(m.nombre.equals(nombre))return 1;
+        return 0;
+    }
+    
 }
