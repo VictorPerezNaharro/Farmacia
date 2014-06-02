@@ -6,7 +6,9 @@
 
 package Clases;
 
+import com.sun.xml.internal.stream.Entity;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
@@ -27,6 +29,21 @@ public class Stock {
         
         
         
+    }
+    
+    public void altaMedicamento(){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Formulario de alta de medicamento.");
+        System.out.println("Escribe el nombre del medicamento:");
+        String nombre = scan.nextLine();
+        
+        ArrayList<Medicamento> posibles = buscarMedicamento(nombre);
+        if(posibles.size()>0){
+            System.out.println("¿Querias decir...?");
+            for (Medicamento medicamento : posibles) {
+                System.out.println(medicamento);
+            }
+        }
     }
     
 }
