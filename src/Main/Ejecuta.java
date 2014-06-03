@@ -51,16 +51,22 @@ public class Ejecuta {
                         System.out.println("Nombre de medicamneto");
                         String busMedicamneto=s.nextLine();
                         ArrayList<Medicamento> resultados=stock.buscarMedicamento(busMedicamneto);
+                        int i =1;
                         for (Medicamento medicamento : resultados) {
-                            System.out.println(medicamento);
+                            String disponible="SI";
+                            if(medicamento.getLotes().size()==0) disponible = "NO";
+                            System.out.println(i + "- " + medicamento + ".Precio: " + medicamento.getPrecio() + ". " + disponible + " disponible");
+                            i++;
                         }
                     }
                     else{
                         System.out.println("Nombre del principio activo");
                         String busPa=s.nextLine();
                         ArrayList<PActivo> resultados=stock.buscarPActivo(busPa);
+                        int i =1;
                         for (PActivo pActivo : resultados) {
-                            System.out.println(pActivo); 
+                            System.out.println(i + "- " + pActivo);
+                            i++;
                         }
                     }
                     break;

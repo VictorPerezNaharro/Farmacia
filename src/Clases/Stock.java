@@ -35,10 +35,8 @@ public class Stock {
     public ArrayList<Medicamento> buscarMedicamento(String busqueda){
         
         ArrayList<Medicamento> GbusquedaMe=new ArrayList<>();
-        System.out.println("TAMAÑO ARRAY " + medicamentos.size());
         for (int i = 0; i < medicamentos.size(); i++) {
             if(medicamentos.get(i).parece(busqueda)){
-                System.out.println("Se parece");
                 GbusquedaMe.add(medicamentos.get(i));
             }
         }
@@ -74,7 +72,7 @@ public class Stock {
             }catch(NumberFormatException e){
                 numero=false;
             }
-            }while(!opc.equals("nuevo")||numero&&(Integer.parseInt(opc)>0&&Integer.parseInt(opc)<posibles.size()));
+            }while(!opc.equals("nuevo")||numero&&(Integer.parseInt(opc)>0&&Integer.parseInt(opc)<=posibles.size()));
             error=false;
             
             if(numero){
@@ -108,6 +106,7 @@ public class Stock {
         System.out.println("Precio de " + nombre + ":");
         double precio = scan.nextDouble();
         nuevoMedicamento = new Medicamento(nombre, precio);
+        medicamentos.add(nuevoMedicamento);
         System.out.println("Medicamento creado. No tienes lotes agregados.");
         return;
     }
