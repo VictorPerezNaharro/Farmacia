@@ -18,6 +18,12 @@ public class Stock {
     
     ArrayList<Medicamento> medicamentos = new ArrayList<>();
     ArrayList<PActivo> principiosActivos = new ArrayList<>();
+    ControlCaducidad control = new ControlCaducidad();
+    
+    public Stock() {
+        
+        control.ElminarCaducados(medicamentos);
+    }
     
     public ArrayList<PActivo> buscarPActivo(String busqueda){
         
@@ -62,32 +68,38 @@ public class Stock {
             String opc="";
             boolean error=false;
             boolean numero=true;
+            System.out.println("Elije uno de los resultados escribiendo su numero o escribe 'nuevo' si no coincide con los anteriores");
             do{
             if(error) System.out.println("Opcion no valida.");
-            System.out.println("Elije uno de los resultados escribiendo su numero o escribe 'nuevo' si no coincide con los anteriores");
             opc=scan.nextLine();
             error=true;
             try{
                 Integer.parseInt(opc);
+                System.out.println("ES UN NUMERO " + opc);
             }catch(NumberFormatException e){
                 numero=false;
             }
-            }while(!opc.equals("nuevo")||numero&&(Integer.parseInt(opc)>0&&Integer.parseInt(opc)<=posibles.size()));
+                System.out.println("VALOR 'NUMERO' : " + numero);
+                System.out.println("POSIBLES.SIZE() = " + posibles.size());
+            }while((!numero)&&(!opc.equals("nuevo"))&&!numero&&(!(Integer.parseInt(opc)>0)&&!(Integer.parseInt(opc)<=posibles.size())));
             error=false;
             
             if(numero){
                 //EN BASE DE DATOS
-                nuevoMedicamento = posibles.get(i-1);
+                nuevoMedicamento = posibles.get(Integer.parseInt(opc)-1);
                 System.out.println("Agregar lote a " + nuevoMedicamento);
                 System.out.println("Numero de lotes");
                 int num = scan.nextInt();
-                System.out.println("Escribe la fecha de caducidad. Formato dd/mm/aaaa");
-                String[] fecha = scan.nextLine().split("/");
+                scan.nextLine();
+                GregorianCalendar nuevo = new GregorianCalendar();
+                do{
+                    System.out.println("Escribe la fecha de caducidad. Formato dd/mm/aaaa. Si es incorrecta se volvera a pedir.");
+                    String[] fecha = scan.nextLine().split("/");
+                    nuevo.set(Integer.parseInt(fecha[2]), Integer.parseInt(fecha[1]), Integer.parseInt(fecha[0]));
+                }while(!control.Comprobarcaducidad(nuevo));
                 System.out.println("El precio actual es de: " + nuevoMedicamento.getPrecio());
                 System.out.println("Si desea cambiar el precio escriba el nuevo, si no escriba un 0");
                 double precio = scan.nextDouble();
-                GregorianCalendar nuevo = new GregorianCalendar();
-                nuevo.set(Integer.parseInt(fecha[2]), Integer.parseInt(fecha[1]), Integer.parseInt(fecha[0]));
                 medicamentos.get(medicamentos.indexOf(nuevoMedicamento)).AgregarLote(nuevo, num);
                 if(precio>0){
                     medicamentos.get(medicamentos.indexOf(nuevoMedicamento)).setPrecio(precio);

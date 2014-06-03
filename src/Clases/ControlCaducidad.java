@@ -35,8 +35,8 @@ public class ControlCaducidad {
         
     }
     
-    public boolean Comprobarcaducidad(Unidad unidad){
-         if(unidad.getCaducidad().compareTo(fechaActual)<0){
+    public boolean Comprobarcaducidad(GregorianCalendar fecha){
+         if(fecha.compareTo(fechaActual)<0){
              return false;
          }
             return true;
