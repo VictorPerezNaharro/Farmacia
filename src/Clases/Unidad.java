@@ -7,6 +7,7 @@
 package Clases;
 
 import java.util.GregorianCalendar;
+import java.util.Locale;
 
 /**
  *
@@ -15,6 +16,7 @@ import java.util.GregorianCalendar;
 public class Unidad {
     
         private GregorianCalendar caducidad;
+        private GregorianCalendar fabricado = new GregorianCalendar();
         private int cantidad;
 
     public Unidad(GregorianCalendar caducidad, int cantidad) {
@@ -26,8 +28,8 @@ public class Unidad {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public GregorianCalendar getCaducidad() {
-        return caducidad;
+    public String getCaducidadString() {
+        return caducidad.get(GregorianCalendar.DAY_OF_MONTH) + ":" + caducidad.get(GregorianCalendar.MONTH)+":"+caducidad.get(GregorianCalendar.YEAR);
     }
 
     public int getCantidad() {
@@ -41,12 +43,24 @@ public class Unidad {
         @Override
     public String toString(){
         
-        return cantidad + " unidades. Caducan en: " + caducidad.get(GregorianCalendar.DAY_OF_MONTH) + "/" + (caducidad.get(GregorianCalendar.MONTH) + 1) + "/" + caducidad.get(GregorianCalendar.YEAR);
+        return cantidad + " unidades. Caducan en: " + (caducidad.get(GregorianCalendar.DAY_OF_MONTH)+1) + "/" + (caducidad.get(GregorianCalendar.MONTH) + 1) + "/" + caducidad.get(GregorianCalendar.YEAR);
         
     }
     
     public int compareTo(Unidad u){
-        return u.getCaducidad().compareTo(caducidad);
+        return u.getCaducidad().compareTo(this.caducidad);
+    }
+
+    public String getFabricadoString() {
+        return fabricado.get(GregorianCalendar.DAY_OF_MONTH) + ":" + (fabricado.get(GregorianCalendar.MONTH)+1)+":"+fabricado.get(GregorianCalendar.YEAR);
+    }
+
+    public GregorianCalendar getCaducidad() {
+        return caducidad;
+    }
+
+    public GregorianCalendar getFabricado() {
+        return fabricado;
     }
     
 }

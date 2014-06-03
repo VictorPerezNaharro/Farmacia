@@ -16,12 +16,13 @@ import java.util.Scanner;
  */
 public class Stock {
     
-    ArrayList<Medicamento> medicamentos = new ArrayList<>();
+    ArrayList<Medicamento> medicamentos;
     ArrayList<PActivo> principiosActivos = new ArrayList<>();
     ControlCaducidad control = new ControlCaducidad();
+    InicializadorDeDatos cargador = new InicializadorDeDatos();
     
     public Stock() {
-        
+        medicamentos = cargador.cargarMedicamentos();
         control.ElminarCaducados(medicamentos);
     }
     
@@ -68,22 +69,18 @@ public class Stock {
             String opc="";
             boolean error=false;
             boolean numero=true;
-            System.out.println("Elije uno de los resultados escribiendo su numero o escribe 'nuevo' si no coincide con los anteriores");
             do{
-            if(error) System.out.println("Opcion no valida.");
-            opc=scan.nextLine();
-            error=true;
-            try{
-                Integer.parseInt(opc);
-                System.out.println("ES UN NUMERO " + opc);
-            }catch(NumberFormatException e){
-                numero=false;
-            }
-                System.out.println("VALOR 'NUMERO' : " + numero);
-                System.out.println("POSIBLES.SIZE() = " + posibles.size());
-            }while((!numero)&&(!opc.equals("nuevo"))&&!numero&&(!(Integer.parseInt(opc)>0)&&!(Integer.parseInt(opc)<=posibles.size())));
+                if(error) System.out.println("Opcion no valida.");
+                System.out.println("Elije uno de los resultados escribiendo su numero o escribe 'nuevo' si no coincide con los anteriores");
+                opc=scan.nextLine();
+                error=true;
+                try{
+                    Integer.parseInt(opc);
+                }catch(NumberFormatException e){
+                    numero=false;
+                }
+            }while((!numero)&&(!opc.equals("nuevo"))||numero&&(Integer.parseInt(opc)<1&&Integer.parseInt(opc)>posibles.size()));
             error=false;
-            
             if(numero){
                 //EN BASE DE DATOS
                 nuevoMedicamento = posibles.get(Integer.parseInt(opc)-1);
@@ -121,6 +118,12 @@ public class Stock {
         medicamentos.add(nuevoMedicamento);
         System.out.println("Medicamento creado. No tienes lotes agregados.");
         return;
+    }
+    
+    public boolean guardarDatos(){
+        
+        return cargador.GuardarMedicamentos(medicamentos);
+        
     }
     
 }

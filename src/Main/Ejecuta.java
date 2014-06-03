@@ -34,7 +34,8 @@ public class Ejecuta {
             System.out.println("2. Busqueda de medicamentos y principios activos");
             System.out.println("3. Venta de medicamento");
             System.out.println("4. Borrado de medicamentos");
-            System.out.println("5. Salir");
+            System.out.println("5. Guardar");
+            System.out.println("6. Salir");
             opcion=s.nextInt();
             s.nextLine();
             switch(opcion){
@@ -77,11 +78,16 @@ public class Ejecuta {
                 case 4:{
                     
                 }
+                case 5:{
+                    if(!stock.guardarDatos()) System.out.println("Fallo al guardar");
+                    else System.out.println("Guardado correctamente");;
+                    break;
+                }
                 default:
                     System.out.println("Opcion no disponible");
             }
             
-        }while(opcion!=5);
+        }while(opcion!=6);
     }
     
 }
