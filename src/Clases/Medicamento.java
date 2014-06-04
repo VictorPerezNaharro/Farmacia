@@ -40,6 +40,12 @@ public class Medicamento {
         
     }
     
+    public void AgregarLote(Unidad lote){
+        
+        lotes.add(lote);
+        
+    }
+    
     void añadirPActivo (PActivo p){
         PrincipiosActivos.add(p);
     }
