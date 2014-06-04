@@ -62,5 +62,9 @@ public class Unidad {
     public GregorianCalendar getFabricado() {
         return fabricado;
     }
+
+    public void setFabricado(GregorianCalendar fabricado) {
+        this.fabricado = fabricado;
+    }
     
 }
