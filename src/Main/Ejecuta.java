@@ -1,6 +1,5 @@
 package Main;
 
-import Clases.ControlCaducidad;
 import Clases.Medicamento;
 import Clases.PActivo;
 import Clases.Stock;
