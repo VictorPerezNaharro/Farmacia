@@ -121,10 +121,10 @@ public class Stock {
             if(opcionP!=1)System.out.println("Esa opcion no esta disponible");
         System.out.println("Para añadir principio activo pulsa 1, para finalizar pulsa 2.");
         opcionP=scan.nextInt();
+        scan.nextLine();
         if(opcionP==1){
             nuevoMedicamento.añadirPActivo(añadirPActivo());
         }
-        opcionP=scan.nextInt();
         }while(opcionP!=2);
          medicamentos.add(nuevoMedicamento);
         return;
@@ -139,6 +139,7 @@ public class Stock {
     public PActivo añadirPActivo(){
         
         System.out.println("Nombre del principio activo:");
+        System.out.println("No se puede usar ; / | $ : %");
         String nombre = scan.nextLine();
         
         PActivo nuevoPActivo;
