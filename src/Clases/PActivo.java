@@ -15,7 +15,6 @@ import java.util.ArrayList;
 public class PActivo {
     private String nombre;
     private double cantidad;
-    private ArrayList<Medicamento> ComponentePara = new ArrayList<Medicamento>();
 
     public PActivo(String nombre, double cantidad) {
         this.nombre = nombre;
@@ -28,10 +27,6 @@ public class PActivo {
 
     public double getCantidad() {
         return cantidad;
-    }
-
-    public ArrayList<Medicamento> getComponentePara() {
-        return ComponentePara;
     }
     
     public String toString(){
