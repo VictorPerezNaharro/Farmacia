@@ -21,7 +21,7 @@ public class InicializadorDeDatos {
 
         ArrayList<Medicamento> medicamentos = new ArrayList<>();
         try{
-            String datos = (String)cargador.read();
+            String datos = (String)cargador_medicamentos.read();
             System.out.println("CARGA: " + datos);
             
         
@@ -50,7 +50,7 @@ public class InicializadorDeDatos {
                 }
                 datos+="/;";
             }
-            cargador.write(datos);
+            cargador_medicamentos.write(datos);
             return true;
         }catch(IOException e){
             System.out.println("Error al guardar los datos." + e);

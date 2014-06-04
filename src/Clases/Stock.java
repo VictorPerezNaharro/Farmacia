@@ -157,27 +157,12 @@ public class Stock {
             error=false;
             if(numero){
                 //EN BASE DE DATOS
-                nuevoMedicamento = posibles.get(Integer.parseInt(opc)-1);
-                System.out.println("Agregar lote a " + nuevoMedicamento);
-                System.out.println("Numero de lotes");
-                int num = scan.nextInt();
-                scan.nextLine();
-                GregorianCalendar nuevo = new GregorianCalendar();
-                do{
-                    System.out.println("Escribe la fecha de caducidad. Formato dd/mm/aaaa. Si es incorrecta se volvera a pedir.");
-                    String[] fecha = scan.nextLine().split("/");
-                    nuevo.set(Integer.parseInt(fecha[2]), Integer.parseInt(fecha[1]), Integer.parseInt(fecha[0]));
-                }while(!control.Comprobarcaducidad(nuevo));
-                System.out.println("El precio actual es de: " + nuevoMedicamento.getPrecio());
-                System.out.println("Si desea cambiar el precio escriba el nuevo, si no escriba un 0");
-                double precio = scan.nextDouble();
-                medicamentos.get(medicamentos.indexOf(nuevoMedicamento)).AgregarLote(nuevo, num);
-                if(precio>0){
-                    medicamentos.get(medicamentos.indexOf(nuevoMedicamento)).setPrecio(precio);
-                    System.out.println("Nuevo precio: " + precio);
-                }
-                System.out.println("Se han añadido " + num + " lotes de " + nuevoMedicamento);
-                return;
+                nuevoPActivo = posibles.get(Integer.parseInt(opc)-1);
+                System.out.println("Cantidad de " + nuevoPActivo.getNombre() + " que lleva el nuevo medicamento");
+                double cantidad = scan.nextDouble();
+                System.out.println("Se le a añadido el principio activo " + nuevoPActivo.getNombre());
+                nuevoPActivo = new PActivo(nombre, cantidad);
+                return nuevoPActivo;
             }
             numero=true;
         }else{
@@ -186,12 +171,12 @@ public class Stock {
         
         //NUEVO MEDICAMENTO
         
-        System.out.println("Precio de " + nombre + ":");
-        double precio = scan.nextDouble();
-        nuevoMedicamento = new Medicamento(nombre, precio);
-        medicamentos.add(nuevoMedicamento);
+        System.out.println("Cantidad de " + nombre + " en el nuevo medicamento");
+        double cantidad = scan.nextDouble();
+        nuevoPActivo = new PActivo(nombre, cantidad);
+        principiosActivos.add(nuevoPActivo);
         System.out.println("Medicamento creado. No tienes lotes agregados.");
-        return;
+        return nuevoPActivo;
         
     }
     

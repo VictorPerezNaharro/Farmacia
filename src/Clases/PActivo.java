@@ -14,10 +14,10 @@ import java.util.ArrayList;
  */
 public class PActivo {
     private String nombre;
-    private int cantidad;
+    private double cantidad;
     private ArrayList<Medicamento> ComponentePara = new ArrayList<Medicamento>();
 
-    public PActivo(String nombre, int cantidad) {
+    public PActivo(String nombre, double cantidad) {
         this.nombre = nombre;
         this.cantidad = cantidad;
     }
@@ -26,7 +26,7 @@ public class PActivo {
         return nombre;
     }
 
-    public int getCantidad() {
+    public double getCantidad() {
         return cantidad;
     }
 
