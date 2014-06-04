@@ -115,8 +115,18 @@ public class Stock {
         System.out.println("Precio de " + nombre + ":");
         double precio = scan.nextDouble();
         nuevoMedicamento = new Medicamento(nombre, precio);
-        medicamentos.add(nuevoMedicamento);
         System.out.println("Medicamento creado. No tienes lotes agregados.");
+        int opcionP=1;
+        do{
+            if(opcionP!=1)System.out.println("Esa opcion no esta disponible");
+        System.out.println("Para añadir principio activo pulsa 1, para finalizar pulsa 2.");
+        opcionP=scan.nextInt();
+        if(opcionP==1){
+            nuevoMedicamento.añadirPActivo(añadirPActivo());
+        }
+        opcionP=scan.nextInt();
+        }while(opcionP!=2);
+         medicamentos.add(nuevoMedicamento);
         return;
     }
     
