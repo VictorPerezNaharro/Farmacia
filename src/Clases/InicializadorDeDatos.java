@@ -23,20 +23,23 @@ public class InicializadorDeDatos {
         ArrayList<Medicamento> medicamentos = new ArrayList<>();
         try{
             String datos = (String)cargador_medicamentos.read();
-            //System.out.println("CARGA: " + datos);
+            System.out.println("CARGA: " + datos);
             
             String[] medic = datos.split(";");
             for (int i = 0; i < medic.length; i++) {
-                
+                Medicamento nuevoMedicamento;
                 String[] secciones = medic[i].split("/");
+                System.out.println(secciones[0]);
                 if(secciones[0].length()!=0){
-                    String[] d = secciones[0].split("|");
+                    String[] d = secciones[0].split("-");
                     String nombre=d[0];
+                    System.out.println(d[0] + ";" + d[1] + ";" + nombre + d.length);
                     double precio=Double.parseDouble(d[1]);
-                    Medicamento nuevoMedicamento = new Medicamento(nombre, precio);
-                    
-                    String[] pactivos = secciones[1].split("|");
+                    nuevoMedicamento = new Medicamento(nombre, precio);
+                    try{
+                    String[] pactivos = secciones[1].split("-");
                     for (int j = 0; j < pactivos.length; j++) {
+                        try{
                         if(secciones[1].length()!=0){
                             String[] datosPA=secciones[0].split("%");
                             String nombrePA=datosPA[0];
@@ -44,12 +47,20 @@ public class InicializadorDeDatos {
                              PActivo nuevoPActivo = new PActivo(nombrePA, cantidadPA);
                             nuevoMedicamento.añadirPActivo(nuevoPActivo);
                         }
+                        }catch(IndexOutOfBoundsException e){
+                            System.out.println("Sin principio activo.");
+                        }
+                    }
+                    }catch(IndexOutOfBoundsException e){
+                        
                     }
                     
                     //LOTES
-                    String[] lotes = secciones[2].split("|");
+                    try{
+                    String[] lotes = secciones[2].split("-");
                     for (int j = 0; j < lotes.length; j++) {
-                        String[] datosLotes = lotes[j].split("$");
+                        String[] datosLotes = lotes[j].split("_");
+                        System.out.println(lotes[j] + "****" + datosLotes[0]);
                         //CANTIDAD
                         int cantidadDeLote = Integer.parseInt(datosLotes[0]);
                         //FECHA FABRICACION
@@ -74,15 +85,20 @@ public class InicializadorDeDatos {
                         
                         nuevoMedicamento.AgregarLote(nuevoLote);
                     }  
+                    }catch(IndexOutOfBoundsException e){
+                    
+                    }
+                    medicamentos.add(nuevoMedicamento);
                 }
             }
         
         }catch(IOException e){
-            System.out.println("No existen datos en la base de datos.");
+            System.out.println("No existen datos en la base de datos." + e);
         }
         catch(ClassNotFoundException e){
             System.out.println("Error2: " + e);
         }
+        System.out.println(medicamentos.size());
         return medicamentos;
         
     }
@@ -91,13 +107,13 @@ public class InicializadorDeDatos {
         String datos="";
         try{
             for (Medicamento medicamento : medicamentos) {
-                datos+=medicamento.getNombre()+"|"+medicamento.getNombre()+"/";
+                datos+=medicamento.getNombre()+"-"+medicamento.getPrecio()+"/";
                 for (PActivo pa : medicamento.getPrincipiosActivos()) {
-                    datos+=pa.getNombre()+ "%" + pa.getCantidad() +"|";
+                    datos+=pa.getNombre()+ "%" + pa.getCantidad() +"-";
                 }
                 datos+="/";
                 for (Unidad uni : medicamento.getLotes()) {
-                    datos+=uni.getCantidad()+"$"+ uni.getFabricadoString() +"$"+uni.getCaducidadString() + "|";
+                    datos+=uni.getCantidad()+"_"+ uni.getFabricadoString() +"_"+uni.getCaducidadString() + "-";
                 }
                 datos+="/;";
             }

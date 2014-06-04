@@ -3,6 +3,7 @@ package Main;
 import Clases.Medicamento;
 import Clases.PActivo;
 import Clases.Stock;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
@@ -29,6 +30,8 @@ public class Ejecuta {
         Scanner s = new Scanner(System.in);
         int opcion;
         do{
+            System.out.println("----------------------------------");
+            System.out.println("/////////MENU FARMACIA///////////");
             System.out.println("1. Dar de alta un medicamento");
             System.out.println("2. Busqueda de medicamentos y principios activos");
             System.out.println("3. Venta de medicamento");
@@ -80,6 +83,10 @@ public class Ejecuta {
                 case 5:{
                     if(!stock.guardarDatos()) System.out.println("Fallo al guardar");
                     else System.out.println("Guardado correctamente");;
+                    break;
+                }
+                case 6:{
+                    System.out.println("Fin de la aplicacion.");
                     break;
                 }
                 default:

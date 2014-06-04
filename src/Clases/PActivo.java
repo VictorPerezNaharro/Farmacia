@@ -7,6 +7,7 @@
 package Clases;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,6 +20,11 @@ public class PActivo {
     public PActivo(String nombre, double cantidad) {
         this.nombre = nombre;
         this.cantidad = cantidad;
+    }
+
+    public PActivo(String nombre) {
+        this.nombre = nombre;
+        this.cantidad = 0;
     }
 
     public String getNombre() {
