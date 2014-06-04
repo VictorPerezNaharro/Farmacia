@@ -24,6 +24,7 @@ public class Stock {
     
     public Stock() {
         medicamentos = cargador.cargarMedicamentos();
+        System.out.println(medicamentos.size());
         control.ElminarCaducados(medicamentos);
     }
     
@@ -97,6 +98,7 @@ public class Stock {
                 System.out.println("El precio actual es de: " + nuevoMedicamento.getPrecio());
                 System.out.println("Si desea cambiar el precio escriba el nuevo, si no escriba un 0");
                 double precio = scan.nextDouble();
+                scan.nextLine();
                 medicamentos.get(medicamentos.indexOf(nuevoMedicamento)).AgregarLote(nuevo, num);
                 if(precio>0){
                     medicamentos.get(medicamentos.indexOf(nuevoMedicamento)).setPrecio(precio);
