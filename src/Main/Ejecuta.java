@@ -48,7 +48,7 @@ public class Ejecuta {
                     int opBus=s.nextInt();
                     s.nextLine();
                     if(opBus==1){
-                        System.out.println("Nombre de medicamneto");
+                        System.out.println("Nombre de medicamento");
                         String busMedicamneto=s.nextLine();
                         ArrayList<Medicamento> resultados=stock.buscarMedicamento(busMedicamneto);
                         int i =1;

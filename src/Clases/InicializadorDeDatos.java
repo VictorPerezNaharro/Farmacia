@@ -41,7 +41,7 @@ public class InicializadorDeDatos {
                             String[] datosPA=secciones[0].split("%");
                             String nombrePA=datosPA[0];
                             double cantidadPA=Double.parseDouble(datosPA[1]);
-                            PActivo nuevoPActivo = new PActivo(nombrePA, cantidadPA);
+                             PActivo nuevoPActivo = new PActivo(nombrePA, cantidadPA);
                             nuevoMedicamento.añadirPActivo(nuevoPActivo);
                         }
                     }
