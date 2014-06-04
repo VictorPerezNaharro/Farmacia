@@ -54,7 +54,7 @@ public class Ejecuta {
                         int i =1;
                         for (Medicamento medicamento : resultados) {
                             String disponible="SI";
-                            if(medicamento.getLotes().size()==0) disponible = "NO";
+                            if(medicamento.getLotes().isEmpty()) disponible = "NO";
                             System.out.println(i + "- " + medicamento + ".Precio: " + medicamento.getPrecio() + ". " + disponible + " disponible");
                             i++;
                         }
