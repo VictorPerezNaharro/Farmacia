@@ -14,7 +14,8 @@ import java.util.ArrayList;
  */
 public class InicializadorDeDatos {
     
-    OperationsIO cargador = new OperationsIO("Datos");
+    OperationsIO cargador_medicamentos = new OperationsIO("Datos_medicamentos");
+    OperationsIO cargador_PActivos = new OperationsIO("Datos_PActivos");
     
     public ArrayList<Medicamento> cargarMedicamentos(){
 
