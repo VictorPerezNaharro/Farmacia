@@ -214,7 +214,6 @@ public class Stock {
         double cantidad = scan.nextDouble();
         nuevoPActivo = new PActivo(nombre, cantidad);
         principiosActivos.add(nuevoPActivo);
-        System.out.println("Medicamento creado. No tienes lotes agregados.");
         return nuevoPActivo;
         
     }
