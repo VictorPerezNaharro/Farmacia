@@ -128,7 +128,7 @@ public class Stock {
         //menu de agrgar lotes--------------------
         System.out.println("Pulsa 1 para agregar lotes. Pulsa 2 para continuar");
         int opcionL=scan.nextInt();
-        do{
+        while(opcionL!=2){
              System.out.println("Agregar lote a " + nuevoMedicamento);
                 System.out.println("Numero de lotes");
                 int num = scan.nextInt();
@@ -142,7 +142,7 @@ public class Stock {
             nuevoMedicamento.AgregarLote(nuevo, num);
              System.out.println("Pulsa 1 para agregar lotes. Pulsa 2 para continuar");
             opcionL=scan.nextInt();
-        }while(opcionL!=2);
+        }
         //----------------------------------------
         int opcionP=1;
         do{
