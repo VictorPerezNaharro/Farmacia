@@ -95,11 +95,11 @@ public class Stock {
                     String[] fecha = scan.nextLine().split("/");
                     nuevo.set(Integer.parseInt(fecha[2]), Integer.parseInt(fecha[1]), Integer.parseInt(fecha[0]));
                 }while(!control.Comprobarcaducidad(nuevo));
+                medicamentos.get(medicamentos.indexOf(nuevoMedicamento)).AgregarLote(nuevo, num);
                 System.out.println("El precio actual es de: " + nuevoMedicamento.getPrecio());
                 System.out.println("Si desea cambiar el precio escriba el nuevo, si no escriba un 0");
                 double precio = scan.nextDouble();
                 scan.nextLine();
-                medicamentos.get(medicamentos.indexOf(nuevoMedicamento)).AgregarLote(nuevo, num);
                 if(precio>0){
                     medicamentos.get(medicamentos.indexOf(nuevoMedicamento)).setPrecio(precio);
                     System.out.println("Nuevo precio: " + precio);
@@ -125,7 +125,25 @@ public class Stock {
         boolean receta=false;
         if(scan.nextInt()==1) receta = true;
         nuevoMedicamento = new Medicamento(nombre, precio, receta);
-        System.out.println("Medicamento creado. No tienes lotes agregados.");
+        //menu de agrgar lotes--------------------
+        System.out.println("Pulsa 1 para agregar lotes. Pulsa 2 para continuar");
+        int opcionL=scan.nextInt();
+        do{
+             System.out.println("Agregar lote a " + nuevoMedicamento);
+                System.out.println("Numero de lotes");
+                int num = scan.nextInt();
+                scan.nextLine();
+                GregorianCalendar nuevo = new GregorianCalendar();
+                do{
+                    System.out.println("Escribe la fecha de caducidad. Formato dd/mm/aaaa. Si es incorrecta se volvera a pedir.");
+                    String[] fecha = scan.nextLine().split("/");
+                    nuevo.set(Integer.parseInt(fecha[2]), Integer.parseInt(fecha[1]), Integer.parseInt(fecha[0]));
+                }while(!control.Comprobarcaducidad(nuevo));
+            nuevoMedicamento.AgregarLote(nuevo, num);
+             System.out.println("Pulsa 1 para agregar lotes. Pulsa 2 para continuar");
+            opcionL=scan.nextInt();
+        }while(opcionL!=2);
+        //----------------------------------------
         int opcionP=1;
         do{
             if(opcionP!=1)System.out.println("Esa opcion no esta disponible");
@@ -137,6 +155,7 @@ public class Stock {
         }
         }while(opcionP!=2);
          medicamentos.add(nuevoMedicamento);
+        System.out.println("Medicamento creado.");
         return;
     }
     
@@ -149,9 +168,8 @@ public class Stock {
     public PActivo añadirPActivo(){
         
         System.out.println("Nombre del principio activo:");
-        System.out.println("(No se pueden usar los caracteres - / % _ ;)");
+        System.out.println("(No se pueden usar los caracteres: - / % _ ;)");
         String nombre = scan.nextLine();
-        
         PActivo nuevoPActivo;
         ArrayList<PActivo> posibles = buscarPActivo(nombre);
         if(posibles.size()>0){
