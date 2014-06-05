@@ -36,6 +36,7 @@ public class InicializadorDeDatos {
                     System.out.println(d[0] + ";" + d[1] + ";" + nombre + d.length);
                     double precio=Double.parseDouble(d[1]);
                     boolean receta = Boolean.parseBoolean(d[2]);
+                    //boolean receta = false;
                     nuevoMedicamento = new Medicamento(nombre, precio, receta);
                     try{
                     String[] pactivos = secciones[1].split("-");
