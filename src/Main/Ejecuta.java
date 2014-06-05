@@ -71,6 +71,8 @@ public class Ejecuta {
                             i++;
                         }
                     }
+                    System.out.println("Pulsa intro para continuar");
+                    s.nextLine();
                     break;
                 }
                 case 3:{
