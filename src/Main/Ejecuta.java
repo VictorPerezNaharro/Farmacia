@@ -3,7 +3,6 @@ package Main;
 import Clases.Medicamento;
 import Clases.PActivo;
 import Clases.Stock;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Scanner;

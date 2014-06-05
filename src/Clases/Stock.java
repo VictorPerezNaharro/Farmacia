@@ -105,6 +105,9 @@ public class Stock {
                     System.out.println("Nuevo precio: " + precio);
                 }
                 System.out.println("Se han añadido " + num + " lotes de " + nuevoMedicamento);
+                //AGREGAR PA A CONOCIDO
+                medicamentos.get(medicamentos.indexOf(nuevoMedicamento)).añadirPActivo(añadirPActivo());
+                //----------------------
                 return;
             }
             numero=true;
@@ -116,7 +119,12 @@ public class Stock {
         
         System.out.println("Precio de " + nombre + ":");
         double precio = scan.nextDouble();
-        nuevoMedicamento = new Medicamento(nombre, precio);
+        System.out.println("¿Es necesaria una receta?");
+        System.out.println("1- Si, es necesaria");
+        System.out.println("otro numero- No es necesaria");
+        boolean receta=false;
+        if(scan.nextInt()==1) receta = true;
+        nuevoMedicamento = new Medicamento(nombre, precio, receta);
         System.out.println("Medicamento creado. No tienes lotes agregados.");
         int opcionP=1;
         do{
@@ -141,7 +149,7 @@ public class Stock {
     public PActivo añadirPActivo(){
         
         System.out.println("Nombre del principio activo:");
-        System.out.println("No se puede usar ; / | $ : %");
+        System.out.println("(No se pueden usar los caracteres - / % _ ;)");
         String nombre = scan.nextLine();
         
         PActivo nuevoPActivo;

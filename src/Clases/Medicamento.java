@@ -19,6 +19,7 @@ public class Medicamento {
     private ArrayList<PActivo> PrincipiosActivos = new ArrayList<>();
     private double precio;
     private ArrayList<Unidad> lotes = new ArrayList<Unidad>();
+    private boolean receta;
 
     public String getNombre() {
         return nombre;
@@ -28,9 +29,10 @@ public class Medicamento {
         return PrincipiosActivos;
     }
 
-    public Medicamento(String nombre, double precio) {
+    public Medicamento(String nombre, double precio, boolean receta) {
         this.nombre = nombre;
         this.precio = precio;
+        this.receta = receta;
     }
     
     public void AgregarLote(GregorianCalendar caducidad, int cantidad){
@@ -81,5 +83,9 @@ public class Medicamento {
 
     public void setPrecio(double precio) {
         this.precio = precio;
+    }
+
+    public boolean isReceta() {
+        return receta;
     }
 }

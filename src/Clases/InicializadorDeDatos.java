@@ -35,7 +35,8 @@ public class InicializadorDeDatos {
                     String nombre=d[0];
                     System.out.println(d[0] + ";" + d[1] + ";" + nombre + d.length);
                     double precio=Double.parseDouble(d[1]);
-                    nuevoMedicamento = new Medicamento(nombre, precio);
+                    boolean receta = Boolean.parseBoolean(d[2]);
+                    nuevoMedicamento = new Medicamento(nombre, precio, receta);
                     try{
                     String[] pactivos = secciones[1].split("-");
                     for (int j = 0; j < pactivos.length; j++) {
@@ -107,9 +108,9 @@ public class InicializadorDeDatos {
         String datos="";
         try{
             for (Medicamento medicamento : medicamentos) {
-                datos+=medicamento.getNombre()+"-"+medicamento.getPrecio()+"/";
+                datos+=medicamento.getNombre()+"-"+medicamento.getPrecio()+"-"+medicamento.isReceta()+"/";
                 for (PActivo pa : medicamento.getPrincipiosActivos()) {
-                    datos+=pa.getNombre()+ "%" + pa.getCantidad() +"-";
+                    datos+=pa.getNombre()+ "%" + pa.getCantidad()+"-";
                 }
                 datos+="/";
                 for (Unidad uni : medicamento.getLotes()) {
