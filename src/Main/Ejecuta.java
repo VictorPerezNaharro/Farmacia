@@ -76,6 +76,11 @@ public class Ejecuta {
                     break;
                 }
                 case 3:{
+                    System.out.println("Introduce el nombre del medicamento que desea comprar");
+                    
+                    System.out.println("Numero de unidades que quieres comprar");
+                    
+                    System.out.println("El precio es ");
                     break;
                 }
                 case 4:{
