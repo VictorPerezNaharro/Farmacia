@@ -17,7 +17,7 @@ public class InicializadorDeDatos {
     
     OperationsIO cargador_medicamentos = new OperationsIO("Datos_medicamentos");
     OperationsIO cargador_PActivos = new OperationsIO("Datos_PActivos");
-    
+
     public ArrayList<Medicamento> cargarMedicamentos(){
 
         ArrayList<Medicamento> medicamentos = new ArrayList<>();
@@ -127,4 +127,50 @@ public class InicializadorDeDatos {
         }
     }
     
+    
+    public ArrayList<PActivo> cargarPActivos(){
+        ArrayList<PActivo> PActivos = new ArrayList<>();
+        try{
+        String datos = (String) cargador_PActivos.read();
+        String[] secciones = datos.split("/");
+            for (String seccion : secciones) {
+                String[] aux = seccion.split("$");
+                PActivo nuevoPActivo = new PActivo(aux[0], Double.parseDouble(aux[1]));
+                PActivos.add(nuevoPActivo);
+            }
+        return PActivos;
+        }catch(IOException e){
+            
+            System.out.println("Error en la lectura d elos PActivos (1)" + e);
+            
+        }catch(ClassNotFoundException e){
+            
+            System.out.println("Error en la lectura d elos PActivos (2)" + e);
+            
+        }catch(IndexOutOfBoundsException e){
+            
+            System.out.println("Error en la lectura d elos PActivos (3)" + e);
+            
+        }
+        return PActivos;
+    }
+        
+    public boolean GuardarPActivos(ArrayList<PActivo> pactivos){
+        String datos="";
+        try{
+            for (PActivo pactivo : pactivos) {
+
+                datos+=pactivo.getNombre() + "$" + pactivo.getCantidad() + "/";
+
+            }
+            cargador_PActivos.write(datos);
+            return true;
+        }catch(IOException e){
+            System.out.println("Error al guardar los datos");
+            return false;
+        }
+    }    
+        
 }
+    
+

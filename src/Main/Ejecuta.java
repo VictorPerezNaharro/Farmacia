@@ -31,7 +31,7 @@ public class Ejecuta {
         do{
             System.out.println("----------------------------------");
             System.out.println("/////////MENU FARMACIA///////////");
-            System.out.println("1. Dar de alta un medicamento");
+            System.out.println("1. Dar de alta o modificar un medicamento");
             System.out.println("2. Busqueda de medicamentos y principios activos");
             System.out.println("3. Venta de medicamento");
             System.out.println("4. Borrado de medicamentos");
@@ -54,11 +54,20 @@ public class Ejecuta {
                         String busMedicamneto=s.nextLine();
                         ArrayList<Medicamento> resultados=stock.buscarMedicamento(busMedicamneto);
                         int i =1;
-                        for (Medicamento medicamento : resultados) {
-                            String disponible="SI";
-                            if(medicamento.getLotes().isEmpty()) disponible = "NO";
-                            System.out.println(i + "- " + medicamento + ".Precio: " + medicamento.getPrecio() + ". " + disponible + " disponible");
-                            i++;
+                        if(!resultados.isEmpty()){
+                            System.out.println("RESULTADOS:");
+                            for (Medicamento medicamento : resultados) {
+                                String disponible="SI";
+                                if(medicamento.getLotes().isEmpty()) disponible = "NO";
+                                System.out.println(i + "- " + medicamento + ".Precio: " + medicamento.getPrecio() + ". " + disponible + " disponible");
+                                System.out.println("Contine estos principios activos:");
+                                for (PActivo pactivo : medicamento.getPrincipiosActivos()) {
+                                        System.out.println("* " + pactivo);
+                                }
+                                i++;
+                            }
+                        }else{
+                            System.out.println("No hay resultados.");
                         }
                     }
                     else{
@@ -66,8 +75,15 @@ public class Ejecuta {
                         String busPa=s.nextLine();
                         ArrayList<PActivo> resultados=stock.buscarPActivo(busPa);
                         int i =1;
+                        System.out.println("RESULTADOS:");
                         for (PActivo pActivo : resultados) {
                             System.out.println(i + "- " + pActivo);
+                            System.out.println("Componente para los medicamentos: ");
+                            for (Medicamento medicamento : stock.getMedicamentos()) {
+                                if(medicamento.getPrincipiosActivos().contains(pActivo)){
+                                    System.out.println("* " + medicamento);
+                                }
+                            }
                             i++;
                         }
                     }
@@ -77,10 +93,42 @@ public class Ejecuta {
                 }
                 case 3:{
                     System.out.println("Introduce el nombre del medicamento que desea comprar");
+                    String nombre = s.nextLine();
+                    Medicamento medicamentoAVender;
                     
-                    System.out.println("Numero de unidades que quieres comprar");
-                    
-                    System.out.println("El precio es ");
+                    ArrayList<Medicamento> encontrados = stock.buscarMedicamento(nombre);
+                    int i =0;
+                    System.out.println("Se han encontrado estas coincidencias:");
+                    for (Medicamento medicamento : encontrados) {
+                        i++;
+                        System.out.println(i + "- " + medicamento);
+                    }
+                    int opc;
+                    do{
+                        System.out.println("Elije el numero que corresponde al medicamento que quieres vender");
+                        opc = s.nextInt();
+                        if(opc<encontrados.size() && opc>0){
+
+                            medicamentoAVender = encontrados.get(i-1);
+                            System.out.println("Numero de unidades que quieres comprar");
+                            int uni = s.nextInt();
+                            s.nextLine();
+                            if(medicamentoAVender.isReceta()) {
+                                System.out.println("¿Tiene receta? 1- SI. otro numero- NO.");
+                                int tiene = s.nextInt();
+                                if(tiene!=1){
+                                    System.out.println("Es necesaria una receta.");
+                                    break;
+                                }
+                            }
+                            double precio = 0;
+                            if(stock.comprobarDisponibilidad(medicamentoAVender, uni)) precio = stock.calculaPrecio(medicamentoAVender, uni);
+                            System.out.println("El precio es " + precio);    
+                            
+                        }else{
+                            System.out.println("Opcion incorrecta.");
+                        }
+                    }while(opc<encontrados.size() && opc>0);
                     break;
                 }
                 case 4:{

@@ -24,6 +24,7 @@ public class Stock {
     
     public Stock() {
         medicamentos = cargador.cargarMedicamentos();
+        principiosActivos = cargador.cargarPActivos();
         System.out.println(medicamentos.size());
         control.ElminarCaducados(medicamentos);
     }
@@ -180,7 +181,7 @@ public class Stock {
     
     public boolean guardarDatos(){
         
-        return cargador.GuardarMedicamentos(medicamentos);
+        return cargador.GuardarMedicamentos(medicamentos)&&cargador.GuardarPActivos(principiosActivos);
         
     }
     
@@ -218,6 +219,7 @@ public class Stock {
                 nuevoPActivo = posibles.get(Integer.parseInt(opc)-1);
                 System.out.println("Cantidad de " + nuevoPActivo.getNombre() + " que lleva el nuevo medicamento");
                 double cantidad = scan.nextDouble();
+                scan.nextLine();
                 System.out.println("Se le a añadido el principio activo " + nuevoPActivo.getNombre());
                 nuevoPActivo = new PActivo(nombre, cantidad);
                 return nuevoPActivo;
@@ -237,7 +239,7 @@ public class Stock {
         
     }
     
-    boolean comprobarDisponibilidad(Medicamento medicamento, int unidades){
+    public boolean comprobarDisponibilidad(Medicamento medicamento, int unidades){
         
         //medicamentos.get(medicamentos.indexOf(medicamento));
         int cont=0;
@@ -276,7 +278,7 @@ public class Stock {
         } 
     }
     
-    double calculaPrecio(Medicamento medicamento, int unidades){
+    public double calculaPrecio(Medicamento medicamento, int unidades){
         
         return medicamentos.get(medicamentos.indexOf(medicamento)).getPrecio() * unidades;
         
@@ -297,6 +299,14 @@ public class Stock {
         
         return resultado;
         
+    }
+
+    public ArrayList<Medicamento> getMedicamentos() {
+        return medicamentos;
+    }
+
+    public ArrayList<PActivo> getPrincipiosActivos() {
+        return principiosActivos;
     }
     
 }
