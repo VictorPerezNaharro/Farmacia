@@ -135,7 +135,7 @@ public class InicializadorDeDatos {
             System.out.println("PRINCIPIOS ACTIVOS: " + datos);
         String[] secciones = datos.split("/");
             for (String seccion : secciones) {
-                String[] aux = seccion.split("?");
+                String[] aux = seccion.split("%");
                 System.out.println("SECCION: " + seccion.length());
                 PActivo nuevoPActivo = new PActivo(aux[0], Double.parseDouble(aux[1]));
                 PActivos.add(nuevoPActivo);
@@ -163,7 +163,7 @@ public class InicializadorDeDatos {
         try{
             for (PActivo pactivo : pactivos) {
 
-                datos+=pactivo.getNombre() + "?" + pactivo.getCantidad() + "/";
+                datos+=pactivo.getNombre() + "%" + pactivo.getCantidad() + "/";
 
             }
             cargador_PActivos.write(datos);
