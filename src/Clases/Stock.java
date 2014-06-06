@@ -232,4 +232,66 @@ public class Stock {
         
     }
     
+    boolean comprobarDisponibilidad(Medicamento medicamento, int unidades){
+        
+        //medicamentos.get(medicamentos.indexOf(medicamento));
+        int cont=0;
+        while(unidades>0){
+        if(!medicamentos.get(medicamentos.indexOf(medicamento)).getLotes().isEmpty()){
+
+            for (int i = 0; i < medicamentos.get(medicamentos.indexOf(medicamento)).getLotes().size(); i++) {
+            
+                cont+=medicamentos.get(medicamentos.indexOf(medicamento)).getLotes().get(i).getCantidad();
+            
+            }
+        if(cont>unidades){ 
+            Unidad target = caducaAntes(medicamento);
+            if(unidades>=target.getCantidad()){
+                unidades-=target.getCantidad();
+                medicamentos.get(medicamentos.indexOf(medicamento)).getLotes().remove(target);
+            }else{
+                unidades=0;
+                medicamentos.get(medicamentos.indexOf(medicamento)).getLotes().get(medicamentos.get(medicamentos.indexOf(medicamento)).getLotes().indexOf(target)).setCantidad(target.getCantidad()-unidades);
+            }
+            
+            }else{
+                System.out.println("No hay suficientes unidades. Numero de unidades: " + cont);
+                return false;
+            }
+        }else{
+            System.out.println("No hay suficientes unidades. Numero de unidades: 0");
+            return false;
+        }
+        }
+        if(unidades>0){
+            System.out.println("Unidades insuficientes");
+            return false;
+        }else{
+            return true;
+        } 
+    }
+    
+    double calculaPrecio(Medicamento medicamento, int unidades){
+        
+        return medicamentos.get(medicamentos.indexOf(medicamento)).getPrecio() * unidades;
+        
+    }
+    
+    Unidad caducaAntes(Medicamento medicamento){
+        
+        Unidad resultado=medicamentos.get(medicamentos.indexOf(medicamento)).getLotes().get(0);
+        GregorianCalendar comparador = medicamentos.get(medicamentos.indexOf(medicamento)).getLotes().get(0).getCaducidad();
+        for (int i = 0; i < medicamentos.get(medicamentos.indexOf(medicamento)).getLotes().size(); i++) {
+            
+            if(comparador.compareTo(medicamentos.get(medicamentos.indexOf(medicamento)).getLotes().get(i).getCaducidad())>1){
+                comparador=medicamentos.get(medicamentos.indexOf(medicamento)).getLotes().get(i).getCaducidad();
+                resultado=medicamentos.get(medicamentos.indexOf(medicamento)).getLotes().get(i);
+            }
+            
+        }
+        
+        return resultado;
+        
+    }
+    
 }
