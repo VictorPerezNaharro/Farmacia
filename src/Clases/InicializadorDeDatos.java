@@ -54,7 +54,7 @@ public class InicializadorDeDatos {
                         }
                     }
                     }catch(IndexOutOfBoundsException e){
-                        
+                        System.out.println("SOY UN CABRON K NO DIGO NADA 1");
                     }
                     
                     //LOTES
@@ -88,7 +88,7 @@ public class InicializadorDeDatos {
                         nuevoMedicamento.AgregarLote(nuevoLote);
                     }  
                     }catch(IndexOutOfBoundsException e){
-                    
+                            System.out.println("SOY UN CABRON K NO DIGO NADA 2");
                     }
                     System.out.println("PRUEBA CARGA PA: " + nuevoMedicamento.getPrincipiosActivos().size());
                     medicamentos.add(nuevoMedicamento);
