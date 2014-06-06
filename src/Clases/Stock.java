@@ -119,8 +119,13 @@ public class Stock {
                     System.out.println("Nuevo precio: " + precio);
                 }
                 //AGREGAR PA A CONOCIDO
-                
+
+                System.out.println("Para agregar Un principio activo pulsa 1, para continuar pulsa 2");
+                int opcionPA=scan.nextInt();
+                scan.nextLine();
+                while(opcionPA!=2){
                 medicamentos.get(medicamentos.indexOf(nuevoMedicamento)).añadirPActivo(añadirPActivo());
+                }
                 //----------------------
                 return;
             }
