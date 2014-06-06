@@ -237,4 +237,7 @@ public class Stock {
         
     }
     
+    public void borrarMedicamento(Medicamento medicamento){
+        medicamentos.remove(medicamento);
+    }
 }

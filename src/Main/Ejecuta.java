@@ -84,6 +84,25 @@ public class Ejecuta {
                     break;
                 }
                 case 4:{
+                    System.out.println("Nombre del medicamento que se desea borrar");
+                    String medBorra=s.nextLine();                     
+                    ArrayList<Medicamento> posibles = stock.buscarMedicamento(medBorra);
+                    if(posibles.size()>0){
+                        System.out.println("¿Querias decir...?");
+                        int i = 1;
+                        for (Medicamento medicamento : posibles) {
+                            System.out.println(i + "- " + medicamento);
+                            i++;
+                        }
+                    }
+                    int opc=0;
+                    do{
+                        System.out.println("Elige cual quieres borrar");
+                        int opcBorra=s.nextInt();
+                        s.nextLine();
+                    }while(opc<1 && opc>posibles.size());
+                    stock.borrarMedicamento(posibles.get(opc-1));
+                    System.out.println("Medicamento borrado");
                     break;
                 }
                 case 5:{
