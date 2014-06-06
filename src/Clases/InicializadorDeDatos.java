@@ -132,11 +132,14 @@ public class InicializadorDeDatos {
         ArrayList<PActivo> PActivos = new ArrayList<>();
         try{
         String datos = (String) cargador_PActivos.read();
+            System.out.println("PRINCIPIOS ACTIVOS: " + datos);
         String[] secciones = datos.split("/");
             for (String seccion : secciones) {
-                String[] aux = seccion.split("$");
+                String[] aux = seccion.split("?");
+                System.out.println("SECCION: " + seccion.length());
                 PActivo nuevoPActivo = new PActivo(aux[0], Double.parseDouble(aux[1]));
                 PActivos.add(nuevoPActivo);
+                System.out.println(nuevoPActivo.getCantidad() + "; " + nuevoPActivo.getNombre());
             }
         return PActivos;
         }catch(IOException e){
@@ -160,7 +163,7 @@ public class InicializadorDeDatos {
         try{
             for (PActivo pactivo : pactivos) {
 
-                datos+=pactivo.getNombre() + "$" + pactivo.getCantidad() + "/";
+                datos+=pactivo.getNombre() + "?" + pactivo.getCantidad() + "/";
 
             }
             cargador_PActivos.write(datos);
