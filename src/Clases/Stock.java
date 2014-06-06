@@ -72,7 +72,7 @@ public class Stock {
             boolean numero=true;
             do{
                 if(error) System.out.println("Opcion no valida.");
-                System.out.println("Elije uno de los resultados escribiendo su numero o escribe 'nuevo' si no coincide con los anteriores");
+                System.out.println("Elije uno de los resultados escribiendo su numero para modificarlo o escribe 'nuevo' si no coincide con los anteriores");
                 opc=scan.nextLine();
                 error=true;
                 try{
@@ -84,18 +84,32 @@ public class Stock {
             error=false;
             if(numero){
                 //EN BASE DE DATOS
+                //menu para saber si quiere añadir lotes nuevos
                 nuevoMedicamento = posibles.get(Integer.parseInt(opc)-1);
-                System.out.println("Agregar lote a " + nuevoMedicamento);
-                System.out.println("Numero de lotes");
-                int num = scan.nextInt();
+                System.out.println("¿Añadir nuevo lote de unidades al medicamento?");
+                System.out.println("1- Si");
+                System.out.println("Otro numero- No");
+                int sino = scan.nextInt();
                 scan.nextLine();
-                GregorianCalendar nuevo = new GregorianCalendar();
-                do{
-                    System.out.println("Escribe la fecha de caducidad. Formato dd/mm/aaaa. Si es incorrecta se volvera a pedir.");
-                    String[] fecha = scan.nextLine().split("/");
-                    nuevo.set(Integer.parseInt(fecha[2]), Integer.parseInt(fecha[1]), Integer.parseInt(fecha[0]));
-                }while(!control.Comprobarcaducidad(nuevo));
-                medicamentos.get(medicamentos.indexOf(nuevoMedicamento)).AgregarLote(nuevo, num);
+                int num=0;
+                while(sino==1){
+                    System.out.println("Agregar lote a " + nuevoMedicamento);
+                    System.out.println("Numero de lotes");
+                    num = scan.nextInt();
+                    scan.nextLine();
+                    GregorianCalendar nuevo = new GregorianCalendar();
+                    do{
+                        System.out.println("Escribe la fecha de caducidad. Formato dd/mm/aaaa. Si es incorrecta se volvera a pedir.");
+                        String[] fecha = scan.nextLine().split("/");
+                        nuevo.set(Integer.parseInt(fecha[2]), Integer.parseInt(fecha[1]), Integer.parseInt(fecha[0]));
+                    }while(!control.Comprobarcaducidad(nuevo));
+                    medicamentos.get(medicamentos.indexOf(nuevoMedicamento)).AgregarLote(nuevo, num);
+                    System.out.println("Lote de unidades añadido.");
+                    System.out.println("¿Añadir otro lote de unidades al medicamento?");
+                    System.out.println("1- Si");
+                    System.out.println("Otro numero- No");
+                    sino = scan.nextInt();
+                }
                 System.out.println("El precio actual es de: " + nuevoMedicamento.getPrecio());
                 System.out.println("Si desea cambiar el precio escriba el nuevo, si no escriba un 0");
                 double precio = scan.nextDouble();
@@ -104,8 +118,8 @@ public class Stock {
                     medicamentos.get(medicamentos.indexOf(nuevoMedicamento)).setPrecio(precio);
                     System.out.println("Nuevo precio: " + precio);
                 }
-                System.out.println("Se han añadido " + num + " lotes de " + nuevoMedicamento);
                 //AGREGAR PA A CONOCIDO
+
                 System.out.println("Para agregar Un principio activo pulsa 1, para continuar pulsa 2");
                 int opcionPA=scan.nextInt();
                 scan.nextLine();
@@ -213,7 +227,7 @@ public class Stock {
             System.out.println("No se han encontrado posibles parecidos en el stock de medicamentos");
         }
         
-        //NUEVO MEDICAMENTO
+        //NUEVO PA
         
         System.out.println("Cantidad de " + nombre + " en el nuevo medicamento");
         double cantidad = scan.nextDouble();
