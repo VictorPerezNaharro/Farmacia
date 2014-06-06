@@ -309,4 +309,8 @@ public class Stock {
         return principiosActivos;
     }
     
+
+    public void borrarMedicamento(Medicamento medicamento){
+        medicamentos.remove(medicamento);
+    }
 }
