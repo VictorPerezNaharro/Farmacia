@@ -240,10 +240,10 @@ public class Stock {
     }
     
     public boolean comprobarDisponibilidad(Medicamento medicamento, int unidades){
-        
+       // System.out.println("PRIMER UNIDADES SEGUN LLEGAS A LA FUNCION: " + unidades);
         //medicamentos.get(medicamentos.indexOf(medicamento));
         int cont=0;
-        while(unidades>0){
+       
         if(!medicamentos.get(medicamentos.indexOf(medicamento)).getLotes().isEmpty()){
 
             for (int i = 0; i < medicamentos.get(medicamentos.indexOf(medicamento)).getLotes().size(); i++) {
@@ -251,14 +251,21 @@ public class Stock {
                 cont+=medicamentos.get(medicamentos.indexOf(medicamento)).getLotes().get(i).getCantidad();
             
             }
-        if(cont>unidades){ 
-            Unidad target = caducaAntes(medicamento);
-            if(unidades>=target.getCantidad()){
-                unidades-=target.getCantidad();
-                medicamentos.get(medicamentos.indexOf(medicamento)).getLotes().remove(target);
-            }else{
-                unidades=0;
-                medicamentos.get(medicamentos.indexOf(medicamento)).getLotes().get(medicamentos.get(medicamentos.indexOf(medicamento)).getLotes().indexOf(target)).setCantidad(target.getCantidad()-unidades);
+        if(cont>=unidades){ 
+            while(unidades>0){
+                Unidad target = caducaAntes(medicamento);
+                //System.out.println("TARGET = " + target);
+                if(unidades>=target.getCantidad()){
+                    System.out.println("Se a terminado un lote entero, pasando al siguiente");
+                    unidades-=target.getCantidad();
+                    medicamentos.get(medicamentos.indexOf(medicamento)).getLotes().remove(target);
+                }else{
+                    //System.out.println("TARGET unidades: " + target.getCantidad());
+                    //System.out.println("Unidades: " + unidades);
+                    //System.out.println("RESTA: " + (target.getCantidad()-unidades));
+                    medicamentos.get(medicamentos.indexOf(medicamento)).getLotes().get(medicamentos.get(medicamentos.indexOf(medicamento)).getLotes().indexOf(target)).setCantidad(target.getCantidad()-unidades);
+                    unidades=0;
+                }
             }
             
             }else{
@@ -269,7 +276,7 @@ public class Stock {
             System.out.println("No hay suficientes unidades. Numero de unidades: 0");
             return false;
         }
-        }
+        
         if(unidades>0){
             System.out.println("Unidades insuficientes");
             return false;
@@ -296,7 +303,7 @@ public class Stock {
             }
             
         }
-        
+        System.out.println("RESULTADO DE LA BUSQUEDA DE CADUCIDAD: " + resultado);
         return resultado;
         
     }

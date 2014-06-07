@@ -19,7 +19,15 @@ import java.util.Scanner;
 public class Ejecuta {
 
     public static void main(String[] args) {
-
+        //NOTAS DE BUGS
+        
+        /*
+        -*FIXED*No se restan bien las unidades al ser compradas.
+        -*FIXED*No calcula bien el precio en la compra.
+        -bug en la fecha de caducidad de los lotes, parece no imprimirse/establecerse bien.
+        -No realiza bien la busqueda de lotes por fecha de caducidad
+        */
+        
         //INICIACION DE LA APLICACION
         System.out.println("Iniciando aplicacion.");
         Stock stock=new Stock();
@@ -78,12 +86,6 @@ public class Ejecuta {
                         System.out.println("RESULTADOS:");
                         for (PActivo pActivo : resultados) {
                             System.out.println(i + "- " + pActivo);
-                            System.out.println("Componente para los medicamentos: ");
-                            for (Medicamento medicamento : stock.getMedicamentos()) {
-                                if(medicamento.getPrincipiosActivos().contains(pActivo)){
-                                    System.out.println("* " + medicamento);
-                                }
-                            }
                             i++;
                         }
                     }
@@ -92,26 +94,33 @@ public class Ejecuta {
                     break;
                 }
                 case 3:{
-                    System.out.println("Introduce el nombre del medicamento que desea comprar");
+                    System.out.println("Introduzca el nombre del medicamento que desea vender");
                     String nombre = s.nextLine();
                     Medicamento medicamentoAVender;
                     
                     ArrayList<Medicamento> encontrados = stock.buscarMedicamento(nombre);
                     int i =0;
-                    System.out.println("Se han encontrado estas coincidencias:");
-                    for (Medicamento medicamento : encontrados) {
-                        i++;
-                        System.out.println(i + "- " + medicamento);
+                    if(encontrados.isEmpty()){
+                        System.out.println("No se han enontrado coincidencias.");
+                        break;
+                    }else{
+                        System.out.println("Se han encontrado estas coincidencias:");
+                        for (Medicamento medicamento : encontrados) {
+                            i++;
+                            System.out.println(i + "- " + medicamento);
+                        }
                     }
                     int opc;
                     do{
-                        System.out.println("Elije el numero que corresponde al medicamento que quieres vender");
+                        System.out.println("Elije el numero que corresponde al medicamento que quieres vender, 0 para salir");
                         opc = s.nextInt();
-                        if(opc<encontrados.size() && opc>0){
+                        if(opc==0) break;
+                        int uni;
+                        if(opc<=encontrados.size() && opc>0){
 
                             medicamentoAVender = encontrados.get(i-1);
                             System.out.println("Numero de unidades que quieres comprar");
-                            int uni = s.nextInt();
+                            uni = s.nextInt();
                             s.nextLine();
                             if(medicamentoAVender.isReceta()) {
                                 System.out.println("¿Tiene receta? 1- SI. otro numero- NO.");
@@ -122,9 +131,10 @@ public class Ejecuta {
                                 }
                             }
                             double precio = 0;
-                            if(stock.comprobarDisponibilidad(medicamentoAVender, uni)) precio = stock.calculaPrecio(medicamentoAVender, uni);
-                            System.out.println("El precio es " + precio);    
-                            
+                            if(stock.comprobarDisponibilidad(medicamentoAVender, uni)){
+                                precio = stock.calculaPrecio(medicamentoAVender, uni);
+                                System.out.println("El precio es " + precio); 
+                            }
                         }else{
                             System.out.println("Opcion incorrecta.");
                         }

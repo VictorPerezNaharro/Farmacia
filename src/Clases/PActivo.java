@@ -42,4 +42,9 @@ public class PActivo {
         return false;
         
     }
+    
+    boolean equals(PActivo pactivo){
+        return pactivo.getNombre().equals(this.getNombre());
+    }
+    
 }

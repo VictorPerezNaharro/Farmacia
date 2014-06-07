@@ -29,7 +29,7 @@ public class InicializadorDeDatos {
             for (int i = 0; i < medic.length; i++) {
                 Medicamento nuevoMedicamento;
                 String[] secciones = medic[i].split("/");
-                System.out.println(secciones[0]);
+                //System.out.println("SECCIONES[0]: " + secciones[0]);
                 if(secciones[0].length()!=0){
                     String[] d = secciones[0].split("-");
                     String nombre=d[0];
@@ -38,31 +38,35 @@ public class InicializadorDeDatos {
                     boolean receta = Boolean.parseBoolean(d[2]);
                     //boolean receta = false;
                     nuevoMedicamento = new Medicamento(nombre, precio, receta);
-                    try{
+                    //try{
                     String[] pactivos = secciones[1].split("-");
                     for (int j = 0; j < pactivos.length; j++) {
+                        //System.out.println("HOLA HOLA HOLA: " + pactivos[j]);
                         try{
                         if(secciones[1].length()!=0){
-                            String[] datosPA=secciones[0].split("%");
+                            String[] datosPA=pactivos[j].split("%");
                             String nombrePA=datosPA[0];
                             double cantidadPA=Double.parseDouble(datosPA[1]);
                             PActivo nuevoPActivo = new PActivo(nombrePA, cantidadPA);
                             nuevoMedicamento.añadirPActivo(nuevoPActivo);
                         }
                         }catch(IndexOutOfBoundsException e){
-                            System.out.println("Sin principio activo.");
+                            //System.out.println("Sin principio activo.");
                         }
                     }
-                    }catch(IndexOutOfBoundsException e){
-                        System.out.println("SOY UN CABRON K NO DIGO NADA 1");
-                    }
-                    
+                    //}catch(IndexOutOfBoundsException e){
+                       // System.out.println("SOY UN CABRON K NO DIGO NADA 1");
+                    //}
+                    //for (PActivo pa: nuevoMedicamento.getPrincipiosActivos()) {
+                        //System.out.println("PRINCIPIO ACTIVO VWERV: "+pa);
+                   // }
                     //LOTES
                     try{
                     String[] lotes = secciones[2].split("-");
                     for (int j = 0; j < lotes.length; j++) {
+                        try{
                         String[] datosLotes = lotes[j].split("_");
-                        System.out.println(lotes[j] + "****" + datosLotes[0]);
+                        //System.out.println(lotes[j] + "****" + datosLotes[0]);
                         //CANTIDAD
                         int cantidadDeLote = Integer.parseInt(datosLotes[0]);
                         //FECHA FABRICACION
@@ -86,11 +90,14 @@ public class InicializadorDeDatos {
                         nuevoLote.setFabricado(fechaFabricacion);
                         
                         nuevoMedicamento.AgregarLote(nuevoLote);
+                        }catch(IndexOutOfBoundsException e){
+                           // System.out.println("Lote vacio");
+                        }
                     }  
                     }catch(IndexOutOfBoundsException e){
-                            System.out.println("SOY UN CABRON K NO DIGO NADA 2");
+                           // System.out.println("SIN LOTES");
                     }
-                    System.out.println("PRUEBA CARGA PA: " + nuevoMedicamento.getPrincipiosActivos().size());
+                    //System.out.println("PRUEBA CARGA PA: " + nuevoMedicamento.getPrincipiosActivos().size());
                     medicamentos.add(nuevoMedicamento);
                 }
             }
@@ -102,6 +109,7 @@ public class InicializadorDeDatos {
             System.out.println("Error2: " + e);
         }
         System.out.println(medicamentos.size());
+        System.out.println("----------TERMINADO DE CARGAR MEDICAMENTOS-----------");
         return medicamentos;
         
     }
