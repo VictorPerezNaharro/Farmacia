@@ -24,8 +24,9 @@ public class Ejecuta {
         /*
         -*FIXED*No se restan bien las unidades al ser compradas.
         -*FIXED*No calcula bien el precio en la compra.
-        -bug en la fecha de caducidad de los lotes, parece no imprimirse/establecerse bien.
-        -No realiza bien la busqueda de lotes por fecha de caducidad
+        -*IDENTIFIED*posible bug en la fecha de caducidad de los lotes, parece no imprimirse/establecerse bien.
+        -*IDENTIFIED*No realiza bien la busqueda de lotes por fecha de caducidad
+        - LOS DOS DE ARRIBA -> debido a que no establece bien la fecha de los lotes al cargarlos
         */
         
         //INICIACION DE LA APLICACION
@@ -159,7 +160,7 @@ public class Ejecuta {
                         int opcBorra=s.nextInt();
                         s.nextLine();
                     }while(opc<1 && opc>posibles.size());
-                    stock.borrarMedicamento(posibles.get(opc-1));
+                    stock.borrarMedicamento(posibles.get(opc));
                     System.out.println("Medicamento borrado");
                     break;
                 }

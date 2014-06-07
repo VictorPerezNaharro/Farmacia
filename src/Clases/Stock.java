@@ -212,7 +212,7 @@ public class Stock {
                 }catch(NumberFormatException e){
                     numero=false;
                 }
-            }while((!numero)&&(!opc.equals("nuevo"))||numero&&(Integer.parseInt(opc)<1&&Integer.parseInt(opc)>posibles.size()));
+            }while((!numero)&&(!opc.equals("nuevo"))||numero&&(Integer.parseInt(opc)<1||Integer.parseInt(opc)>posibles.size()));
             error=false;
             if(numero){
                 //EN BASE DE DATOS
@@ -295,9 +295,15 @@ public class Stock {
         
         Unidad resultado=medicamentos.get(medicamentos.indexOf(medicamento)).getLotes().get(0);
         GregorianCalendar comparador = medicamentos.get(medicamentos.indexOf(medicamento)).getLotes().get(0).getCaducidad();
+        //COMENTAR EL FOR
+        for (Unidad u : medicamentos.get(medicamentos.indexOf(medicamento)).getLotes()) {
+            System.out.println(u.getCaducidadString());
+        }
+        //---
         for (int i = 0; i < medicamentos.get(medicamentos.indexOf(medicamento)).getLotes().size(); i++) {
-            
+            System.out.println("COMPARADOR (dia caducidad): " + comparador.get(GregorianCalendar.DAY_OF_MONTH));
             if(comparador.compareTo(medicamentos.get(medicamentos.indexOf(medicamento)).getLotes().get(i).getCaducidad())>1){
+                System.out.println("modificado");
                 comparador=medicamentos.get(medicamentos.indexOf(medicamento)).getLotes().get(i).getCaducidad();
                 resultado=medicamentos.get(medicamentos.indexOf(medicamento)).getLotes().get(i);
             }

@@ -42,7 +42,7 @@ public class Unidad {
         @Override
     public String toString(){
         
-        return cantidad + " unidades. Caducan en: " + (caducidad.get(GregorianCalendar.DAY_OF_MONTH)+1) + "/" + (caducidad.get(GregorianCalendar.MONTH) + 1) + "/" + caducidad.get(GregorianCalendar.YEAR);
+        return cantidad + " unidades. Caducan en: " + (caducidad.get(GregorianCalendar.DAY_OF_MONTH)) + "/" + (caducidad.get(GregorianCalendar.MONTH) + 1) + "/" + caducidad.get(GregorianCalendar.YEAR);
         
     }
     
