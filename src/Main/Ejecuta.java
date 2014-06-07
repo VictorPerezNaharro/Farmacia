@@ -24,9 +24,8 @@ public class Ejecuta {
         /*
         -*FIXED*No se restan bien las unidades al ser compradas.
         -*FIXED*No calcula bien el precio en la compra.
-        -*IDENTIFIED*posible bug en la fecha de caducidad de los lotes, parece no imprimirse/establecerse bien.
-        -*IDENTIFIED*No realiza bien la busqueda de lotes por fecha de caducidad
-        - LOS DOS DE ARRIBA -> debido a que no establece bien la fecha de los lotes al cargarlos
+        -*FIXED*posible bug en la fecha de caducidad de los lotes, parece no imprimirse/establecerse bien.
+        -No realiza bien la busqueda de lotes por fecha de caducidad
         */
         
         //INICIACION DE LA APLICACION
@@ -131,7 +130,7 @@ public class Ejecuta {
                                     break;
                                 }
                             }
-                            double precio = 0;
+                            double precio;
                             if(stock.comprobarDisponibilidad(medicamentoAVender, uni)){
                                 precio = stock.calculaPrecio(medicamentoAVender, uni);
                                 System.out.println("El precio es " + precio); 
@@ -157,16 +156,16 @@ public class Ejecuta {
                     int opc=0;
                     do{
                         System.out.println("Elige cual quieres borrar");
-                        int opcBorra=s.nextInt();
+                        opc=s.nextInt();
                         s.nextLine();
-                    }while(opc<1 && opc>posibles.size());
+                    }while(opc<1 || opc>posibles.size());
                     stock.borrarMedicamento(posibles.get(opc));
                     System.out.println("Medicamento borrado");
                     break;
                 }
                 case 5:{
                     if(!stock.guardarDatos()) System.out.println("Fallo al guardar");
-                    else System.out.println("Guardado correctamente");;
+                    else System.out.println("Guardado correctamente");
                     break;
                 }
                 case 6:{
