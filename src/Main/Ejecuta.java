@@ -159,7 +159,7 @@ public class Ejecuta {
                         opc=s.nextInt();
                         s.nextLine();
                     }while(opc<1 || opc>posibles.size());
-                    stock.borrarMedicamento(posibles.get(opc));
+                    stock.borrarMedicamento(posibles.get(opc-1));
                     System.out.println("Medicamento borrado");
                     break;
                 }

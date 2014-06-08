@@ -300,18 +300,16 @@ public class Stock {
             System.out.println(u.getCaducidadString());
         }
         //---
-        for (int i = 0; i < medicamentos.get(medicamentos.indexOf(medicamento)).getLotes().size(); i++) {
-            System.out.println("COMPARADOR (dia caducidad): " + comparador.get(GregorianCalendar.DAY_OF_MONTH));
-            if(comparador.compareTo(medicamentos.get(medicamentos.indexOf(medicamento)).getLotes().get(i).getCaducidad())>1){
-                System.out.println("modificado");
-                comparador=medicamentos.get(medicamentos.indexOf(medicamento)).getLotes().get(i).getCaducidad();
-                resultado=medicamentos.get(medicamentos.indexOf(medicamento)).getLotes().get(i);
+        for (Unidad u : medicamentos.get(medicamentos.indexOf(medicamento)).getLotes()) {
+            System.out.println("Comparador atm: " + comparador.get(GregorianCalendar.DAY_OF_MONTH));
+            if(comparador.compareTo(u.getCaducidad())>0){
+                System.out.println("Modificado a dia : " + comparador.get(GregorianCalendar.DAY_OF_MONTH));
+                comparador = u.getCaducidad();
+                resultado = u;
             }
-            
         }
         System.out.println("RESULTADO DE LA BUSQUEDA DE CADUCIDAD: " + resultado);
         return resultado;
-        
     }
 
     public ArrayList<Medicamento> getMedicamentos() {
