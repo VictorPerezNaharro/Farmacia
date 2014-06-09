@@ -296,19 +296,19 @@ public class Stock {
         Unidad resultado=medicamentos.get(medicamentos.indexOf(medicamento)).getLotes().get(0);
         GregorianCalendar comparador = medicamentos.get(medicamentos.indexOf(medicamento)).getLotes().get(0).getCaducidad();
         //COMENTAR EL FOR
-        for (Unidad u : medicamentos.get(medicamentos.indexOf(medicamento)).getLotes()) {
-            System.out.println(u.getCaducidadString());
-        }
+       // for (Unidad u : medicamentos.get(medicamentos.indexOf(medicamento)).getLotes()) {
+        //    System.out.println(u.getCaducidadString());
+        //}
         //---
         for (Unidad u : medicamentos.get(medicamentos.indexOf(medicamento)).getLotes()) {
             System.out.println("Comparador atm: " + comparador.get(GregorianCalendar.DAY_OF_MONTH));
             if(comparador.compareTo(u.getCaducidad())>0){
-                System.out.println("Modificado a dia : " + comparador.get(GregorianCalendar.DAY_OF_MONTH));
+                //System.out.println("Modificado a dia : " + comparador.get(GregorianCalendar.DAY_OF_MONTH));
                 comparador = u.getCaducidad();
                 resultado = u;
             }
         }
-        System.out.println("RESULTADO DE LA BUSQUEDA DE CADUCIDAD: " + resultado);
+        //System.out.println("RESULTADO DE LA BUSQUEDA DE CADUCIDAD: " + resultado);
         return resultado;
     }
 
